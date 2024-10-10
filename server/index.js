@@ -19,11 +19,14 @@ app.post("/api/create-payment", async (req, res) => {
         amount,
         currency,
         billing,
-        success_url: "http://localhost:5173/success", // not required for card payments but valid URL still required in request
-        failure_url: "http://localhost:5173/woops", // not required for card payments but valid URL still required in request
+        success_url: "http://localhost:5173/success",
+        failure_url: "http://localhost:5173/woops",
         processing_channel_id: "pc_v7qijqm475oerphf2cmp2ho27y", // from dashboard
         enabled_payment_methods: ["card"], //assuming only card payments on day 1
         reference: "sausage123", // orderNumber?
+        "3ds": {
+          enabled: true,
+        },
       },
       {
         headers: {
